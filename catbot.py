@@ -5,6 +5,15 @@ import PiMotor
 import time
 import RPi.GPIO as GPIO
 
+m1 = PiMotor.Motor("MOTOR1",1)
+m2 = PiMotor.Motor("MOTOR2",1)
+motorAll = PiMotor.LinkedMotors(m1,m2)
+
+#Names for Individual Arrows
+ab = PiMotor.Arrow(1)
+al = PiMotor.Arrow(2)
+af = PiMotor.Arrow(3)
+ar = PiMotor.Arrow(4)
 
 def tail():
     fast = 0.001
@@ -52,17 +61,34 @@ def tail():
     except KeyboardInterrupt:
         GPIO.cleanup()
 
+
+
 def up():
     print("Fwd")
+    af.on()
+    motorAll.forward(100)
+    af.off()
 
 def down():
     print("Back")
+    ab.on()
+    motorAll.reverse(100)
+    ab.off()
 
 def left():
     print("Left")
+    al.on()
+    m1.forward(100)
+    m2.reverse(100)
+    al.off()
+
 
 def right():
     print("Right")
+    ar.on()
+    m2.forward(100)
+    m1.reverse(100)
+    ar.off()
 
 def joy(argument):
     switcher = {
