@@ -47,7 +47,7 @@ def tail():
                 fadeSteps = fadeSteps - 1
 
             loops = loops - 1
-            if loops > 0
+            if loops > 0:
                 time.sleep(1)
     except KeyboardInterrupt:
         GPIO.cleanup()
